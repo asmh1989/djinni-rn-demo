@@ -1,0 +1,6 @@
+[submodule "deps/djinni"]
+	path = deps/djinni
+	url = git@192.168.7.28:sandy/djinni.git
+[submodule "deps/gyp"]
+	path = deps/gyp
+	url = git@192.168.7.28:sandy/gyp.git
