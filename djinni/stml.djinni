@@ -1,0 +1,53 @@
+# log
+log_interface = interface +j +o {
+  d(tag: string, msg: string);
+  w(tag: string, msg: string);
+  e(tag: string, msg: string);
+  i(tag: string, msg: string);
+}
+
+log = interface +c {
+  static create(l: log_interface);
+}
+
+# utils
+utils_interface = interface +j +o{
+  # 获取应用可读写的目录
+  getRootPath(): string;
+}
+
+utils = interface +c {
+  static create(interface: utils_interface);
+}
+
+
+# cache
+cache = interface +c {
+  get(key: string, defaultVaue: string): string;
+  find(key: string): bool;
+  del(key: string): bool;
+  put(key: string, value: string): bool;
+  static instance(): cache;
+}
+
+# stml
+stml = interface +c {
+  start(server: string, port: i32);
+  setKeeplive(alive: bool);
+  forceReconnect();
+  post(msg: string, showloading: bool);
+  bye();
+  setListener(listener: stml_listener);
+  static create(): stml;
+}
+
+stml_listener = interface +j +o{
+  connecting();
+  connected();
+  disconnect(error: string);
+  received(msg: string);
+  sended(msg: string);
+  sending(msg: string, showloading: bool);
+}
+
+
