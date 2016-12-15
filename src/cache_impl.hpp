@@ -14,9 +14,7 @@
 namespace smobiler {
     class CacheImpl : public Cache
     {
-    public:
-        CacheImpl();
-        
+    public:        
         virtual std::string get(const std::string & key, const std::string & defaultVaue);
         virtual bool find(const std::string & key);
         virtual bool del(const std::string & key);

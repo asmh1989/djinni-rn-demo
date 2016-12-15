@@ -10,6 +10,7 @@
 #define utils_impl_hpp
 
 #include "utils.hpp"
+#include "utils_interface.hpp"
 #include <string>
 
 namespace smobiler {

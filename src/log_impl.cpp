@@ -7,7 +7,6 @@
 //
 
 #include "log_impl.hpp"
-#include "log_interface.hpp"
 
 namespace smobiler {
     static std::shared_ptr<LogInterface> m_log;

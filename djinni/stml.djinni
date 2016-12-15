@@ -34,6 +34,7 @@ cache = interface +c {
 stml = interface +c {
   start(server: string, port: i32);
   setKeeplive(alive: bool);
+  setTimeout(timeout: i32);
   forceReconnect();
   post(msg: string, showloading: bool);
   bye();

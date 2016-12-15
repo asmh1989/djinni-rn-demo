@@ -11,6 +11,9 @@
 
 #include "stml.hpp"
 #include "stml_listener.hpp"
+#include "sttp/dogrobber.h"
+
+using namespace sttp;
 
 namespace smobiler {
     class StmlImpl : public Stml
@@ -27,6 +30,11 @@ namespace smobiler {
         virtual void setListener(const std::shared_ptr<StmlListener> & listener);
         
     private:
+        void onDogrobberEvent(Dogrobber::EventType,const error_code&,std::shared_ptr<SttpResponse>);
+        void flushPost();
+        
+        vector<string> m_strDirectives;
+
         std::shared_ptr<StmlListener> m_listener;
     };
 }

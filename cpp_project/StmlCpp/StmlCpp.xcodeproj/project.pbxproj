@@ -12,7 +12,34 @@
 		A43E840A1E00E8B800743CDB /* utils_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A43E84081E00E8B800743CDB /* utils_impl.cpp */; };
 		A43E840D1E00EB3800743CDB /* cache_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A43E840B1E00EB3800743CDB /* cache_impl.cpp */; };
 		A43E84101E00ED1800743CDB /* stml_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A43E840E1E00ED1800743CDB /* stml_impl.cpp */; };
+		A43E84291E00F15600743CDB /* connector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A43E84151E00F15600743CDB /* connector.cpp */; };
+		A43E842B1E00F15600743CDB /* dogrobber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A43E84191E00F15600743CDB /* dogrobber.cpp */; };
+		A43E842C1E00F15600743CDB /* error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A43E841B1E00F15600743CDB /* error.cpp */; };
+		A43E842D1E00F15600743CDB /* connector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A43E841E1E00F15600743CDB /* connector.cpp */; };
+		A43E842E1E00F15600743CDB /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A43E84201E00F15600743CDB /* context.cpp */; };
+		A43E842F1E00F15600743CDB /* state.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A43E84221E00F15600743CDB /* state.cpp */; };
+		A43E84301E00F15600743CDB /* stml-parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A43E84261E00F15600743CDB /* stml-parser.cpp */; };
+		A43E844D1E01312500743CDB /* libcryptopp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A43E844C1E01312100743CDB /* libcryptopp.a */; };
+		A43E84551E01397C00743CDB /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A43E84541E01397C00743CDB /* libz.tbd */; };
+		A43E84591E013D8200743CDB /* tinyxml2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A43E84571E013D8200743CDB /* tinyxml2.cpp */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A43E844B1E01312100743CDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A43E84471E01312100743CDB /* cryptopp.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EEAEBCD34957A2B1570FD135;
+			remoteInfo = cryptopp;
+		};
+		A43E84501E01371700743CDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A43E84471E01312100743CDB /* cryptopp.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 09A03166786AC88DCD95A519;
+			remoteInfo = cryptopp;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		A43E83E21E00D91B00743CDB /* CopyFiles */ = {
@@ -37,6 +64,25 @@
 		A43E840C1E00EB3800743CDB /* cache_impl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cache_impl.hpp; sourceTree = "<group>"; };
 		A43E840E1E00ED1800743CDB /* stml_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stml_impl.cpp; sourceTree = "<group>"; };
 		A43E840F1E00ED1800743CDB /* stml_impl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = stml_impl.hpp; sourceTree = "<group>"; };
+		A43E84151E00F15600743CDB /* connector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = connector.cpp; sourceTree = "<group>"; };
+		A43E84161E00F15600743CDB /* connector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = connector.h; sourceTree = "<group>"; };
+		A43E84191E00F15600743CDB /* dogrobber.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dogrobber.cpp; sourceTree = "<group>"; };
+		A43E841A1E00F15600743CDB /* dogrobber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dogrobber.h; sourceTree = "<group>"; };
+		A43E841B1E00F15600743CDB /* error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = error.cpp; sourceTree = "<group>"; };
+		A43E841C1E00F15600743CDB /* error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = error.h; sourceTree = "<group>"; };
+		A43E841E1E00F15600743CDB /* connector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = connector.cpp; sourceTree = "<group>"; };
+		A43E841F1E00F15600743CDB /* connector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = connector.h; sourceTree = "<group>"; };
+		A43E84201E00F15600743CDB /* context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = context.cpp; sourceTree = "<group>"; };
+		A43E84211E00F15600743CDB /* context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = context.h; sourceTree = "<group>"; };
+		A43E84221E00F15600743CDB /* state.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = state.cpp; sourceTree = "<group>"; };
+		A43E84231E00F15600743CDB /* state.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = state.h; sourceTree = "<group>"; };
+		A43E84241E00F15600743CDB /* transceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = transceiver.h; sourceTree = "<group>"; };
+		A43E84261E00F15600743CDB /* stml-parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "stml-parser.cpp"; sourceTree = "<group>"; };
+		A43E84271E00F15600743CDB /* stml-parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "stml-parser.h"; sourceTree = "<group>"; };
+		A43E84471E01312100743CDB /* cryptopp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cryptopp.xcodeproj; path = ../../build_ios/deps/cryptopp.xcodeproj; sourceTree = "<group>"; };
+		A43E84541E01397C00743CDB /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		A43E84571E013D8200743CDB /* tinyxml2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml2.cpp; sourceTree = "<group>"; };
+		A43E84581E013D8200743CDB /* tinyxml2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml2.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +90,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A43E84551E01397C00743CDB /* libz.tbd in Frameworks */,
+				A43E844D1E01312500743CDB /* libcryptopp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,8 +101,10 @@
 		A43E83DB1E00D91B00743CDB = {
 			isa = PBXGroup;
 			children = (
+				A43E84471E01312100743CDB /* cryptopp.xcodeproj */,
 				A43E83E61E00D91B00743CDB /* StmlCpp */,
 				A43E83E51E00D91B00743CDB /* Products */,
+				A43E84531E01397C00743CDB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -78,6 +128,10 @@
 		A43E83F61E00DA3A00743CDB /* src */ = {
 			isa = PBXGroup;
 			children = (
+				A43E84571E013D8200743CDB /* tinyxml2.cpp */,
+				A43E84581E013D8200743CDB /* tinyxml2.h */,
+				A43E84121E00F15600743CDB /* sttp */,
+				A43E84251E00F15600743CDB /* parser */,
 				A43E84051E00DD9300743CDB /* log_impl.cpp */,
 				A43E84061E00DD9300743CDB /* log_impl.hpp */,
 				A43E84081E00E8B800743CDB /* utils_impl.cpp */,
@@ -89,6 +143,59 @@
 			);
 			name = src;
 			path = ../../../src;
+			sourceTree = "<group>";
+		};
+		A43E84121E00F15600743CDB /* sttp */ = {
+			isa = PBXGroup;
+			children = (
+				A43E84151E00F15600743CDB /* connector.cpp */,
+				A43E84161E00F15600743CDB /* connector.h */,
+				A43E84191E00F15600743CDB /* dogrobber.cpp */,
+				A43E841A1E00F15600743CDB /* dogrobber.h */,
+				A43E841B1E00F15600743CDB /* error.cpp */,
+				A43E841C1E00F15600743CDB /* error.h */,
+				A43E841D1E00F15600743CDB /* setp */,
+				A43E84241E00F15600743CDB /* transceiver.h */,
+			);
+			path = sttp;
+			sourceTree = "<group>";
+		};
+		A43E841D1E00F15600743CDB /* setp */ = {
+			isa = PBXGroup;
+			children = (
+				A43E841E1E00F15600743CDB /* connector.cpp */,
+				A43E841F1E00F15600743CDB /* connector.h */,
+				A43E84201E00F15600743CDB /* context.cpp */,
+				A43E84211E00F15600743CDB /* context.h */,
+				A43E84221E00F15600743CDB /* state.cpp */,
+				A43E84231E00F15600743CDB /* state.h */,
+			);
+			path = setp;
+			sourceTree = "<group>";
+		};
+		A43E84251E00F15600743CDB /* parser */ = {
+			isa = PBXGroup;
+			children = (
+				A43E84261E00F15600743CDB /* stml-parser.cpp */,
+				A43E84271E00F15600743CDB /* stml-parser.h */,
+			);
+			path = parser;
+			sourceTree = "<group>";
+		};
+		A43E84481E01312100743CDB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A43E844C1E01312100743CDB /* libcryptopp.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A43E84531E01397C00743CDB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A43E84541E01397C00743CDB /* libz.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -105,6 +212,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				A43E84511E01371700743CDB /* PBXTargetDependency */,
 			);
 			name = StmlCpp;
 			productName = StmlCpp;
@@ -137,6 +245,12 @@
 			mainGroup = A43E83DB1E00D91B00743CDB;
 			productRefGroup = A43E83E51E00D91B00743CDB /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = A43E84481E01312100743CDB /* Products */;
+					ProjectRef = A43E84471E01312100743CDB /* cryptopp.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				A43E83E31E00D91B00743CDB /* StmlCpp */,
@@ -144,20 +258,46 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		A43E844C1E01312100743CDB /* libcryptopp.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libcryptopp.a;
+			remoteRef = A43E844B1E01312100743CDB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A43E83E01E00D91B00743CDB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A43E84291E00F15600743CDB /* connector.cpp in Sources */,
 				A43E840D1E00EB3800743CDB /* cache_impl.cpp in Sources */,
+				A43E842F1E00F15600743CDB /* state.cpp in Sources */,
 				A43E84101E00ED1800743CDB /* stml_impl.cpp in Sources */,
+				A43E842C1E00F15600743CDB /* error.cpp in Sources */,
 				A43E84071E00DD9300743CDB /* log_impl.cpp in Sources */,
 				A43E840A1E00E8B800743CDB /* utils_impl.cpp in Sources */,
+				A43E842B1E00F15600743CDB /* dogrobber.cpp in Sources */,
+				A43E84301E00F15600743CDB /* stml-parser.cpp in Sources */,
+				A43E84591E013D8200743CDB /* tinyxml2.cpp in Sources */,
+				A43E842E1E00F15600743CDB /* context.cpp in Sources */,
 				A43E83E81E00D91B00743CDB /* main.cpp in Sources */,
+				A43E842D1E00F15600743CDB /* connector.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A43E84511E01371700743CDB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = cryptopp;
+			targetProxy = A43E84501E01371700743CDB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A43E83E91E00D91B00743CDB /* Debug */ = {
@@ -193,6 +333,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
+					ASIO_STANDALONE,
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -235,6 +376,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = ASIO_STANDALONE;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -251,8 +393,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 7MPDWSB26Z;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../generated-src/cpp\"";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../generated-src/cpp\"",
+					"\"$(SRCROOT)/../../deps/asio/include\"",
+					"\"$(SRCROOT)/../../deps\"",
+					"\"$(SRCROOT)/../../src\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USE_HEADERMAP = NO;
 			};
 			name = Debug;
 		};
@@ -260,8 +408,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 7MPDWSB26Z;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../generated-src/cpp\"";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../generated-src/cpp\"",
+					"\"$(SRCROOT)/../../deps/asio/include\"",
+					"\"$(SRCROOT)/../../deps\"",
+					"\"$(SRCROOT)/../../src\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USE_HEADERMAP = NO;
 			};
 			name = Release;
 		};
@@ -284,6 +438,7 @@
 				A43E83ED1E00D91B00743CDB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

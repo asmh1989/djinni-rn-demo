@@ -10,7 +10,17 @@
 #define log_impl_hpp
 
 #include "log.hpp"
+#include "log_interface.hpp"
 #include <string>
+
+#define TAG_SOCKET      "socket"
+#define TAG_SETTING     "setting"
+#define TAG_ERROR       "error"
+#define TAG_AUDIO       "audio"
+#define TAG_IMAGE       "image"
+#define TAG_VIEW        "view"
+#define TAG_API         "api"
+#define TAG_OFFLINE     "office"
 
 namespace smobiler {
     class LogImpl : public smobiler::Log {
