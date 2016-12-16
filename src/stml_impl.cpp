@@ -123,10 +123,14 @@ namespace smobiler {
                         XMLPrinter print;
                         xml->Accept(&print);
                         
-                        stringstream sst;
-                        sst << "received: " << print.CStr();
+//                        stringstream sst;
+//                        sst << "received: " << print.CStr();
                         
-                        LogImpl::d(TAG_SOCKET, sst.str());
+//                        LogImpl::d(TAG_SOCKET, sst.str());
+                        
+                        if(m_listener){
+                            m_listener->received(print.CStr());
+                        }
                         
 //                        STMLParser::Parser::instance().enqueue(move(pResponse->xmlDoc));
                         break;

@@ -256,7 +256,6 @@ namespace sttp
                     m_logStream.write((const char*)&m_recvPackage.content[0],
                                       SOCKET_LOG_SIZE <= m_recvPackage.content.size() ?
                                       SOCKET_LOG_SIZE : m_recvPackage.content.size());
-                    LogImpl::d(TAG_SOCKET, m_logStream.str());
                     m_logStream.str("");
                     
                     pResponse->xmlDoc.reset(new tinyxml2::XMLDocument());
