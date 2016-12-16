@@ -39,6 +39,15 @@ CJNIEXPORT void JNICALL Java_com_smobiler_djinni_Stml_00024CppProxy_native_1setK
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
+CJNIEXPORT void JNICALL Java_com_smobiler_djinni_Stml_00024CppProxy_native_1setTimeout(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jint j_timeout)
+{
+    try {
+        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
+        const auto& ref = ::djinni::objectFromHandleAddress<::smobiler::Stml>(nativeRef);
+        ref->setTimeout(::djinni::I32::toCpp(jniEnv, j_timeout));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
+}
+
 CJNIEXPORT void JNICALL Java_com_smobiler_djinni_Stml_00024CppProxy_native_1forceReconnect(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {

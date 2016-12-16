@@ -27,6 +27,7 @@ namespace smobiler {
         virtual void forceReconnect();
         virtual void post(const std::string & msg, bool showloading);
         virtual void bye();
+        virtual void setTimeout(int32_t timeout);
         virtual void setListener(const std::shared_ptr<StmlListener> & listener);
         
     private:

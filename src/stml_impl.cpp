@@ -66,6 +66,11 @@ namespace smobiler {
         m_listener = listener;
     }
     
+    void StmlImpl::setTimeout(int32_t timeout)
+    {
+        
+    }
+    
     void StmlImpl::flushPost()
     {
         for(auto strDirective : m_strDirectives)

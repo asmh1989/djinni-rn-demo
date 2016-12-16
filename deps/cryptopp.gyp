@@ -21,7 +21,7 @@
         'cryptopp/pch.cpp',
         'cryptopp/simple.cpp',
         'cryptopp/winpipes.cpp',
-        'cryptopp/cryptlib_bds.cpp'
+        'cryptopp/cryptlib_bds.cpp',
       ],
       'configurations': {
         'Debug': {

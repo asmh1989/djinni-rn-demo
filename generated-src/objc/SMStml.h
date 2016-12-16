@@ -14,6 +14,8 @@
 
 - (void)setKeeplive:(BOOL)alive;
 
+- (void)setTimeout:(int32_t)timeout;
+
 - (void)forceReconnect;
 
 - (void)post:(nonnull NSString *)msg

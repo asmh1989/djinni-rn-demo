@@ -11,6 +11,8 @@ public abstract class Stml {
 
     public abstract void setKeeplive(boolean alive);
 
+    public abstract void setTimeout(int timeout);
+
     public abstract void forceReconnect();
 
     public abstract void post(String msg, boolean showloading);
@@ -59,6 +61,14 @@ public abstract class Stml {
             native_setKeeplive(this.nativeRef, alive);
         }
         private native void native_setKeeplive(long _nativeRef, boolean alive);
+
+        @Override
+        public void setTimeout(int timeout)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            native_setTimeout(this.nativeRef, timeout);
+        }
+        private native void native_setTimeout(long _nativeRef, int timeout);
 
         @Override
         public void forceReconnect()

@@ -20,6 +20,8 @@ public:
 
     virtual void setKeeplive(bool alive) = 0;
 
+    virtual void setTimeout(int32_t timeout) = 0;
+
     virtual void forceReconnect() = 0;
 
     virtual void post(const std::string & msg, bool showloading) = 0;
