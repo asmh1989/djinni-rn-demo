@@ -25,7 +25,7 @@ export default class RNSmobiler extends Component {
 
   state: {
     progressVisible: boolean,
-    hasVtView: boolean,
+    hasVtView: number,
     progressText: string,
   };
 
@@ -52,7 +52,7 @@ export default class RNSmobiler extends Component {
 
     this.setState({
       progressVisible: true,
-      hasVtView: false,
+      hasVtView: 0,
       progressText:'数据传输中'
 
     })
@@ -61,10 +61,18 @@ export default class RNSmobiler extends Component {
   StmlEventDisconnect(obj: Object){
     console.log('StmlEventDisconnect...');
 
+    this.setState({
+      progressVisible: false,
+      hasVtView: 0,
+      progressText:''
+    });
   }
 
   StmlEventSending(obj: Object){
-
+    let oldState = this.state;
+    oldState.progressVisible = true;
+    oldState.progressText = '请稍后..';
+    this.setState(oldState);
   }
 
   StmlEventSended(obj: Object){
@@ -74,15 +82,18 @@ export default class RNSmobiler extends Component {
   StmlEventReceived(obj: Object){
     console.log(`StmlEventReceived: ${obj.msg}`);
 
+    let oldState = this.state;
+    oldState.progressVisible = false;
     let msg = JSON.parse(obj.msg);
     if(msg.Type == 'end'){
       this.setState({
         progressVisible: false,
-        hasVtView: true,
+        hasVtView: this.state.hasVtView+1,
         progressText:''
       });
     } else {
         viewMaker.create(msg);
+        // this.setState(oldState);
     }
   }
 
@@ -103,18 +114,20 @@ export default class RNSmobiler extends Component {
 
     this.setState({
       progressVisible: true,
-      hasVtView: false,
+      hasVtView: 0,
       progressText: '正在连接..'
     });
+
   }
 
   render() {
 
+    let progressKey = `progressView${this.state.hasVtView}`;
     let progressView = <Modal
       animationType={"fade"}
       transparent={true}
       visible={this.state.progressVisible}
-      key='progressView'
+      key={progressKey}
       onRequestClose={() => {}}
     >
       <View style={[styles.container, {"backgroundColor": 'rgba(0,0,0, 0.3)'}]} >
@@ -130,7 +143,7 @@ export default class RNSmobiler extends Component {
       </View>
     </Modal>;
 
-    if(this.state.hasVtView){
+    if(this.state.hasVtView > 0){
       let views = viewMaker.elements;
       views.push(progressView);
       let mainView = React.createElement(View, {style: {flex: 1}}, views);
