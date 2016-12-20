@@ -9,49 +9,83 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Modal,
+  Platform,
 } from 'react-native';
 
+import * as Progress from 'react-native-progress';
+var DeviceInfo = require('react-native-device-info');
+
+
 var stml = require('./js/stml');
+var viewMaker = require('./js/viewMaker');
 
 export default class RNSmobiler extends Component {
+
+  state: {
+    progressVisible: boolean,
+    hasVtView: boolean,
+    progressText: string,
+  };
+
 
   constructor()
   {
     super();
+
+    this.state = {
+      progressVisible: false,
+      hasVtView: false,
+      progressText:'请稍后..'
+    };
   }
 
-  StmlEventConnecting(obj){
+  StmlEventConnecting(obj: Object){
 
   }
 
-  StmlEventConnected(obj){
+  StmlEventConnected(obj: Object){
     console.log('StmlEventConnected...');
 
-    stml.post(`<Session ID="8E3A321F_4812_4020_B28D_6BA2B90F45B3"><Connect User="chiyu" Mode="Request" Form="" DeviceOS="IOS" DeviceOSVersion="10.1.1" DeviceVersion="3.5.0" Version="0.0.1" Device="iPhone7,1" ServiceKey=""/></Session>`);
+    stml.post(`<Session ID=\"${DeviceInfo.getUniqueID()}\"><Connect User="chiyu" Mode="Request" Form="" DeviceOS="${Platform.OS == 'ios' ? 'ios' : 'android'}" DeviceOSVersion="${DeviceInfo.getSystemVersion()}" DeviceVersion="3.5.0" Version="0.0.1" Device="${DeviceInfo.getDeviceId()}" ServiceKey=""/></Session>`);
 
+    this.setState({
+      progressVisible: true,
+      hasVtView: false,
+      progressText:'数据传输中'
+
+    })
   }
 
-  StmlEventDisconnect(obj){
+  StmlEventDisconnect(obj: Object){
     console.log('StmlEventDisconnect...');
 
   }
 
-  StmlEventSending(obj){
+  StmlEventSending(obj: Object){
 
   }
 
-  StmlEventSended(obj){
+  StmlEventSended(obj: Object){
 
   }
 
-  StmlEventReceived(obj){
+  StmlEventReceived(obj: Object){
+    console.log(`StmlEventReceived: ${obj.msg}`);
 
-    console.log('StmlEventReceived...');
-
-    console.log(`${obj.msg}`);
-
+    let msg = JSON.parse(obj.msg);
+    if(msg.Type == 'end'){
+      this.setState({
+        progressVisible: false,
+        hasVtView: true,
+        progressText:''
+      });
+    } else {
+        viewMaker.create(msg);
+    }
   }
+
 
   componentWillMount(){
     console.log('componentWillMount...');
@@ -66,23 +100,54 @@ export default class RNSmobiler extends Component {
     };
 
     stml.start('192.168.7.59', 23);
+
+    this.setState({
+      progressVisible: true,
+      hasVtView: false,
+      progressText: '正在连接..'
+    });
   }
 
   render() {
-    return (
+
+    let progressView = <Modal
+      animationType={"fade"}
+      transparent={true}
+      visible={this.state.progressVisible}
+      key='progressView'
+      onRequestClose={() => {}}
+    >
+      <View style={[styles.container, {"backgroundColor": 'rgba(0,0,0, 0.3)'}]} >
+        <View style={styles.modalStyle}>
+          <Progress.Circle style={{ justifyContent: 'center' }} size={40} indeterminate={true} />
+          <Text style={{
+              fontSize: 16,
+              textAlign: 'center',
+              margin: 10,
+              color:'#888888'
+            }}>{this.state.progressText}</Text>
+        </View>
+      </View>
+    </Modal>;
+
+    if(this.state.hasVtView){
+      let views = viewMaker.elements;
+      views.push(progressView);
+      let mainView = React.createElement(View, {style: {flex: 1}}, views);
+
+      return mainView;
+    }
+    else
+      return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          Welcome to RNSmobiler!
         </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+        {progressView}
       </View>
     );
+
+
   }
 }
 
@@ -103,6 +168,13 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  modalStyle: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#333333',
+    borderRadius: 10,
+    padding: 12,
+  }
 });
 
 AppRegistry.registerComponent('RNSmobiler', () => RNSmobiler);

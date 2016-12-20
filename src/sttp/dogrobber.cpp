@@ -39,7 +39,7 @@ namespace sttp
         return instance;
     }
     
-    Dogrobber::Dogrobber() : m_isStop(true),m_force(false)
+    Dogrobber::Dogrobber() : m_isStop(true),m_force(false), m_connectType(EventType::EUnknown)
     {
         m_transceiver.setOnConnected([this](const error_code& error)
                                      {
@@ -55,11 +55,14 @@ namespace sttp
                                              m_originServer = m_server;
                                          }
                                          doEventCallback(EventType::EConnected,error,nullptr);
+                                         m_connectType = EventType::EConnected;
                                      });
         
         m_transceiver.setOnDisconnected([this](const error_code& error)
                                         {
                                             doEventCallback(EventType::EDisconnect,error,nullptr);
+                                            m_connectType = EventType::EDisconnect;
+
                                         });
         
         m_transceiver.setOnRecevied(bind(&Dogrobber::handleReceived,
@@ -295,6 +298,11 @@ namespace sttp
     void Dogrobber::post(const string &msg)
     {
         m_transceiver.send(msg);
+    }
+    
+    bool Dogrobber::isConnected()
+    {
+        return m_connectType == EventType::EConnected;
     }
     
     void Dogrobber::unzip(vector<unsigned char>& record,

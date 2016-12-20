@@ -9,6 +9,7 @@
 #include "stml_impl.hpp"
 #include "log_impl.hpp"
 #include "parser/stml-parser.h"
+#include "json11.hpp"
 
 namespace smobiler {
     std::shared_ptr<Stml> Stml::create()
@@ -29,8 +30,12 @@ namespace smobiler {
     
     void StmlImpl::start(const std::string &server, int32_t port)
     {
-        Dogrobber::getInstance().setPeer(server,port);
-        Dogrobber::getInstance().hello();
+        if(!Dogrobber::getInstance().isConnected()){
+            Dogrobber::getInstance().setPeer(server,port);
+            Dogrobber::getInstance().hello();
+        } else {
+            if(m_listener) m_listener->connected();
+        }
     }
     
     void StmlImpl::setKeeplive(bool alive)
@@ -120,16 +125,62 @@ namespace smobiler {
                     case ContentType::STML:
                     {
                         auto xml = move(pResponse->xmlDoc);
-                        XMLPrinter print;
-                        xml->Accept(&print);
+//                        XMLPrinter print;
+//                        xml->Accept(&print);
                         
 //                        stringstream sst;
 //                        sst << "received: " << print.CStr();
                         
 //                        LogImpl::d(TAG_SOCKET, sst.str());
                         
+                        if(!m_listener) break;
+                        
+                        XMLElement* root = xml->RootElement();
+
+                        XMLElement* entity = root->FirstChildElement();
+                        
+                        {
+                            json11::Json::object obj;
+                            obj["Type"] = "start";
+                            std::string str;
+                            json11::Json json(obj);
+                            json.dump(str);
+                        }
+
+                        while(entity){
+                            std::string name = entity->Name();
+                            
+                            if(name == "CREATE"){
+                                auto attr = entity->FirstAttribute();
+                                
+                                json11::Json::object obj;
+                                while(attr){
+                                    
+                                    obj[attr->Name()] = attr->Value();
+                                    attr = attr->Next();
+                                }
+                                
+                                std::string str;
+                                json11::Json json(obj);
+                                json.dump(str);
+                                
+                                m_listener->received(str);
+                            } else if(name== "Session"){
+                                
+                                json11::Json::object obj;
+                                obj["Type"] = "end";
+                                std::string str;
+                                json11::Json json(obj);
+                                json.dump(str);
+                                
+                                m_listener->received(str);
+                            }
+                            
+                            entity = entity->NextSiblingElement();
+                        }
+                        
                         if(m_listener){
-                            m_listener->received(print.CStr());
+//                            m_listener->received(print.CStr());
                         }
                         
 //                        STMLParser::Parser::instance().enqueue(move(pResponse->xmlDoc));

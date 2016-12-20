@@ -90,7 +90,8 @@ namespace sttp
             EDisconnect,
             ESended,
             EReceived,
-            ETimeOut
+            ETimeOut,
+            EUnknown
         };
         
         typedef function<void(const EventType,const error_code&,shared_ptr<SttpResponse>)> EventCallback;
@@ -121,6 +122,8 @@ namespace sttp
             m_transceiver.setKeepAlive(keepAlive);
         }
         
+        bool isConnected();
+        
     protected:
         Dogrobber();
         
@@ -146,6 +149,8 @@ namespace sttp
         _SttpPackage m_recvPackage;
         
         stringstream m_logStream;
+        
+        EventType m_connectType;
         
         atomic<bool> m_isStop;
         atomic<bool> m_force;
