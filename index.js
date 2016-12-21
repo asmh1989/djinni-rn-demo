@@ -36,7 +36,7 @@ export default class RNSmobiler extends Component {
 
     this.state = {
       progressVisible: false,
-      hasVtView: false,
+      hasVtView: 0,
       progressText:'请稍后..'
     };
   }
@@ -122,7 +122,9 @@ export default class RNSmobiler extends Component {
 
   render() {
 
-    let progressKey = `progressView${this.state.hasVtView}`;
+    let time = new Date();
+
+    let progressKey = `progressView${time.toLocaleTimeString()}`;
     let progressView = <Modal
       animationType={"fade"}
       transparent={true}
