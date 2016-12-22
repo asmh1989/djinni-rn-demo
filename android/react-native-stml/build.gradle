@@ -13,14 +13,14 @@ model {
 
         }
 
-        buildTypes {
-            debug{
-                ndk {
-                    debuggable true
-                    cppFlags.add("-DDEBUG")
-                }
-            }
-        }
+//        buildTypes {
+//            debug{
+//                ndk {
+//                    debuggable true
+//                    cppFlags.add("-DDEBUG")
+//                }
+//            }
+//        }
 
         sources {
             main {
@@ -66,7 +66,7 @@ model {
             cppFlags.add("-I${file("../../src")}".toString())
 
             ldLibs.add("z")
-            ldLibs.add("log")
+//            ldLibs.add("log")
             abiFilters.addAll(['armeabi-v7a'])
         }
     }

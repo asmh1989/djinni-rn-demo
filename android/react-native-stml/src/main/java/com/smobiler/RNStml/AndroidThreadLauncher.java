@@ -11,7 +11,7 @@ public class AndroidThreadLauncher extends ThreadLauncher {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                runTask.execute();
+                 runTask.execute();
             }
         });
         if (name != null) {

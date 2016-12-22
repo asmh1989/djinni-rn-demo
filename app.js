@@ -47,7 +47,7 @@ export default class RNSmobiler extends Component {
   StmlEventConnected(obj: Object){
     console.log('StmlEventConnected...');
 
-    stml.post(`<Session ID=\"${DeviceInfo.getUniqueID()}3}\"><Connect User="chiyu" Mode="Request" Form="" DeviceOS="${Platform.OS == 'ios' ? 'ios' : 'android'}" DeviceOSVersion="${DeviceInfo.getSystemVersion()}" DeviceVersion="3.5.0" Version="0.0.1" Device="${DeviceInfo.getDeviceId()}" ServiceKey=""/></Session>`);
+    stml.post(`<Session ID=\"${DeviceInfo.getUniqueID()}}\"><Connect User="chiyu" Mode="Request" Form="" DeviceOS="${Platform.OS == 'ios' ? 'ios' : 'android'}" DeviceOSVersion="${DeviceInfo.getSystemVersion()}" DeviceVersion="3.5.0" Version="0.0.1" Device="${DeviceInfo.getDeviceId()}" ServiceKey=""/></Session>`);
 
     this.setState({
       progressVisible: true,

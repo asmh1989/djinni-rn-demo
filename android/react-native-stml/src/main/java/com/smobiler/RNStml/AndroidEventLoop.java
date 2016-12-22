@@ -6,7 +6,7 @@ import android.os.Looper;
 import com.smobiler.djinni.AsyncTask;
 import com.smobiler.djinni.EventLoop;
 
-public class AndroidEventLoop extends EventLoop {
+public class AndroidEventqLoop extends EventLoop {
     Handler mHandler;
     public AndroidEventLoop() {
         mHandler = new Handler(Looper.getMainLooper());

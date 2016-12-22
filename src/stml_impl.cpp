@@ -125,7 +125,7 @@ namespace smobiler {
                         errmsg = error.message();
                     }
                     
-                    m_bg_thread->post([&](){
+                    m_bg_thread->post([&, errmsg](){
                         m_listener->disconnect(errmsg);
                     });
                 }
