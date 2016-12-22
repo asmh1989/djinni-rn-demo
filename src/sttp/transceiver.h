@@ -70,7 +70,7 @@ public:
             m_ioService.run(error);
             if(error)
             {
-                LogImpl::e(TAG_ERROR, error.message());
+                LOGE(TAG_ERROR, error.message());
             }
         }).detach();
     }
@@ -125,7 +125,7 @@ public:
     
     void disconnect(const error_code& error)
     {
-        LogImpl::d(TAG_SOCKET, "Transceiver disconnected .");
+        LOGD(TAG_SOCKET, "Transceiver disconnected .");
         m_timer.cancel();
         m_isSending = false;
         error_code close_err;
@@ -147,7 +147,7 @@ public:
     //return: 连接断开的情况下，返回false，否者返回true。
     bool send(const string &str,bool immediate = false)
     {
-        LogImpl::d(TAG_SOCKET, "Transceiver request send: ");
+        LOGD(TAG_SOCKET, "Transceiver request send: ");
         m_ioService.post([this,str,immediate]()
         {
             if(!str.empty())
@@ -178,7 +178,7 @@ public:
     
     void recv()
     {
-        LogImpl::d(TAG_SOCKET, "Transceiver request recv.");
+        LOGD(TAG_SOCKET, "Transceiver request recv.");
         m_connector.asyncRead([this](const error_code& error,const size_t bytes_transfered)
                               {
                                   m_timer.cancel();
@@ -187,7 +187,7 @@ public:
                                       stringstream sst;
                                       sst << "Transceiver read err:" << error.message()
                                       << ", errorcode=" << error.value();
-                                      LogImpl::e(TAG_ERROR, sst.str());
+                                      LOGE(TAG_ERROR, sst.str());
                                       error_code resultErr = error;
                                       switch (resultErr.value())
                                       {
@@ -218,7 +218,7 @@ public:
                                       return;
                                   }
                                   
-                                  LogImpl::d(TAG_SOCKET, "Transceiver received ");
+                                  LOGD(TAG_SOCKET, "Transceiver received ");
                                   if (m_onReceived)
                                   {
                                       m_onReceived(m_connector.getRecvData(),
@@ -244,7 +244,7 @@ private:
                                 m_timer.cancel();
                                 if (error)
                                 {
-                                    LogImpl::e(TAG_ERROR, "Transceiver async_connect error:" + error.message());
+                                    LOGE(TAG_ERROR, "Transceiver async_connect error:" + error.message());
                                     m_state = State::Disconnect;
                                     if(error.value() == asio::error::operation_aborted) return;
                                     error_code sttpError(error.value(),SttpError::instance());
@@ -256,7 +256,7 @@ private:
                             });
         
         startTimer(WaitType::Connect);
-        LogImpl::d(TAG_SOCKET, "Transceiver connecting ... ");
+        LOGD(TAG_SOCKET, "Transceiver connecting ... ");
     }
     
     void onConnected(const error_code& error)
@@ -267,7 +267,7 @@ private:
         error_code sttpError(error.value(),SttpError::instance());
         if (m_onConnected) m_onConnected(sttpError);
         
-        LogImpl::d(TAG_SOCKET, "Transceiver async_connect success.");
+        LOGD(TAG_SOCKET, "Transceiver async_connect success.");
         
         
         //if(!m_isSending) flush();
@@ -281,7 +281,7 @@ private:
             return false;
         }
         m_isSending = true;
-        LogImpl::d(TAG_SOCKET, "Transceiver send:" + m_sendBuffer.front());
+        LOGD(TAG_SOCKET, "Transceiver send:" + m_sendBuffer.front());
         m_connector.asyncWrite((unsigned char*)m_sendBuffer.front().c_str(),
                                m_sendBuffer.front().length(),
                                [this](const error_code& error,size_t bytes_transfered)
@@ -291,7 +291,7 @@ private:
                                    {
                                        m_isSending = false;
                                        disconnect(error);
-                                       LogImpl::e(TAG_ERROR, "Transceiver Send failed: " + error.message());
+                                       LOGE(TAG_ERROR, "Transceiver Send failed: " + error.message());
                                        return;
                                    }
                                    
@@ -310,7 +310,7 @@ private:
     void handleTimeout(WaitType type, const asio::error_code& error)
     {
         if(error.value() == asio::error::operation_aborted) return;
-        LogImpl::d(TAG_SOCKET, "Transceiver Timeout: " + error.message());
+        LOGD(TAG_SOCKET, "Transceiver Timeout: " + error.message());
         
         switch(type)
         {

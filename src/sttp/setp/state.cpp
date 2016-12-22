@@ -91,7 +91,7 @@ namespace setp
             connector.changeState(&HandshakeFinish::instance());
             error_code ec;
             if(m_handler) m_handler(ec,bytes_transfered);
-            LogImpl::d(TAG_SOCKET,"Handshaker resume success.");
+            LOGD(TAG_SOCKET,"Handshaker resume success.");
 
             return true;
         }
@@ -244,7 +244,7 @@ namespace setp
         error_code ec;
         if(handler) handler(ec);
         
-        LogImpl::d(TAG_SOCKET,"Handshaker success.");
+        LOGD(TAG_SOCKET,"Handshaker success.");
     }
     
     bool HandshakeFinish::handleReceived(SETPConnector& connector,

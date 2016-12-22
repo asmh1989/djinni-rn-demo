@@ -30,6 +30,8 @@
 		A47617B01E024A930043B666 /* libdjinni_objc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A47617AE1E024A800043B666 /* libdjinni_objc.a */; };
 		A47617B11E024A930043B666 /* libstml_objc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A47617A51E024A800043B666 /* libstml_objc.a */; };
 		A47618141E0267310043B666 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A47618101E0261CF0043B666 /* libz.tbd */; };
+		A4A8EE8C1E0B995000C11767 /* SMEventLoopObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A8EE891E0B995000C11767 /* SMEventLoopObjc.m */; };
+		A4A8EE8D1E0B995000C11767 /* SMThreadLauncherObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A8EE8B1E0B995000C11767 /* SMThreadLauncherObjc.m */; };
 		A4B12B6E1E03AF850083F824 /* StmlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B12B6D1E03AF850083F824 /* StmlManager.m */; };
 /* End PBXBuildFile section */
 
@@ -247,6 +249,10 @@
 		A47617981E024A800043B666 /* support_lib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = support_lib.xcodeproj; path = "../build_ios/deps/djinni/support-lib/support_lib.xcodeproj"; sourceTree = "<group>"; };
 		A476179B1E024A800043B666 /* cryptopp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cryptopp.xcodeproj; path = ../build_ios/deps/cryptopp.xcodeproj; sourceTree = "<group>"; };
 		A47618101E0261CF0043B666 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		A4A8EE881E0B995000C11767 /* SMEventLoopObjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMEventLoopObjc.h; sourceTree = "<group>"; };
+		A4A8EE891E0B995000C11767 /* SMEventLoopObjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMEventLoopObjc.m; sourceTree = "<group>"; };
+		A4A8EE8A1E0B995000C11767 /* SMThreadLauncherObjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMThreadLauncherObjc.h; sourceTree = "<group>"; };
+		A4A8EE8B1E0B995000C11767 /* SMThreadLauncherObjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMThreadLauncherObjc.m; sourceTree = "<group>"; };
 		A4B12B6C1E03AF850083F824 /* StmlManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StmlManager.h; sourceTree = "<group>"; };
 		A4B12B6D1E03AF850083F824 /* StmlManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StmlManager.m; sourceTree = "<group>"; };
 		F35E6D15A5C94DB09CDD2A5D /* libRNDeviceInfo.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNDeviceInfo.a; sourceTree = "<group>"; };
@@ -513,6 +519,10 @@
 		A4B12B6B1E03AF850083F824 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				A4A8EE881E0B995000C11767 /* SMEventLoopObjc.h */,
+				A4A8EE891E0B995000C11767 /* SMEventLoopObjc.m */,
+				A4A8EE8A1E0B995000C11767 /* SMThreadLauncherObjc.h */,
+				A4A8EE8B1E0B995000C11767 /* SMThreadLauncherObjc.m */,
 				A4B12B6C1E03AF850083F824 /* StmlManager.h */,
 				A4B12B6D1E03AF850083F824 /* StmlManager.m */,
 			);
@@ -891,6 +901,8 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				A4B12B6E1E03AF850083F824 /* StmlManager.m in Sources */,
+				A4A8EE8C1E0B995000C11767 /* SMEventLoopObjc.m in Sources */,
+				A4A8EE8D1E0B995000C11767 /* SMThreadLauncherObjc.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,7 +21,7 @@ public abstract class Stml {
 
     public abstract void setListener(StmlListener listener);
 
-    public static native Stml create();
+    public static native Stml create(LogInterface log, Cache cache, EventLoop uiThread, ThreadLauncher launcher);
 
     private static final class CppProxy extends Stml
     {

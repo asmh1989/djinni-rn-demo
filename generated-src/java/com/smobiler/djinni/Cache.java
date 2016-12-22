@@ -15,7 +15,7 @@ public abstract class Cache {
 
     public abstract boolean put(String key, String value);
 
-    public static native Cache instance();
+    public abstract String getRootPath();
 
     private static final class CppProxy extends Cache
     {
@@ -71,5 +71,13 @@ public abstract class Cache {
             return native_put(this.nativeRef, key, value);
         }
         private native boolean native_put(long _nativeRef, String key, String value);
+
+        @Override
+        public String getRootPath()
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_getRootPath(this.nativeRef);
+        }
+        private native String native_getRootPath(long _nativeRef);
     }
 }

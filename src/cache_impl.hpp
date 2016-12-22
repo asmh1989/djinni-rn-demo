@@ -19,7 +19,8 @@ namespace smobiler {
         virtual bool find(const std::string & key);
         virtual bool del(const std::string & key);
         virtual bool put(const std::string & key, const std::string & value);
-        
+        virtual std::string getRootPath();
+
     };
 }
 #endif /* cache_impl_hpp */

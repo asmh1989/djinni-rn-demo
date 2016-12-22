@@ -9,11 +9,7 @@
 #include "cache_impl.hpp"
 
 namespace smobiler {
-    std::shared_ptr<Cache> Cache::instance()
-    {
-        return std::make_shared<CacheImpl>();
-    }
-    
+
     std::string CacheImpl::get(const std::string &key, const std::string &defaultVaue)
     {
         return defaultVaue;
@@ -34,4 +30,9 @@ namespace smobiler {
         return false;
     }
     
+    
+    std::string CacheImpl::getRootPath()
+    {
+        return "";
+    }
 }

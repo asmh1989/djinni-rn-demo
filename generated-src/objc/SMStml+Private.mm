@@ -6,7 +6,11 @@
 #import "DJICppWrapperCache+Private.h"
 #import "DJIError.h"
 #import "DJIMarshal+Private.h"
+#import "SMCache+Private.h"
+#import "SMEventLoop+Private.h"
+#import "SMLogInterface+Private.h"
 #import "SMStmlListener+Private.h"
+#import "SMThreadLauncher+Private.h"
 #include <exception>
 #include <stdexcept>
 #include <utility>
@@ -77,9 +81,15 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (nullable SMStml *)create {
++ (nullable SMStml *)create:(nullable id<SMLogInterface>)log
+                      cache:(nullable SMCache *)cache
+                   uiThread:(nullable id<SMEventLoop>)uiThread
+                   launcher:(nullable id<SMThreadLauncher>)launcher {
     try {
-        auto objcpp_result_ = ::smobiler::Stml::create();
+        auto objcpp_result_ = ::smobiler::Stml::create(::djinni_generated::LogInterface::toCpp(log),
+                                                       ::djinni_generated::Cache::toCpp(cache),
+                                                       ::djinni_generated::EventLoop::toCpp(uiThread),
+                                                       ::djinni_generated::ThreadLauncher::toCpp(launcher));
         return ::djinni_generated::Stml::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }

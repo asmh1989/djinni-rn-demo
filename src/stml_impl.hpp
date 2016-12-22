@@ -12,6 +12,9 @@
 #include "stml.hpp"
 #include "stml_listener.hpp"
 #include "sttp/dogrobber.h"
+#include "log_interface.hpp"
+#include "cache.hpp"
+#include "stl.hpp"
 
 using namespace sttp;
 
@@ -20,7 +23,7 @@ namespace smobiler {
     {
     public:
         
-        StmlImpl();
+        StmlImpl(const std::shared_ptr<LogInterface> &log, const std::shared_ptr<Cache> &cache, const shared_ptr<SingleThreadTaskRunner>&ui_runner, const shared_ptr<SingleThreadTaskRunner> &bg_runner);
         
         virtual void start(const std::string & server, int32_t port);
         virtual void setKeeplive(bool alive);
@@ -37,6 +40,9 @@ namespace smobiler {
         vector<string> m_strDirectives;
 
         std::shared_ptr<StmlListener> m_listener;
+        
+        const shared_ptr<SingleThreadTaskRunner> m_ui_thread;
+        const shared_ptr<SingleThreadTaskRunner> m_bg_thread;
     };
 }
 

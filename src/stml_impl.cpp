@@ -10,16 +10,30 @@
 #include "log_impl.hpp"
 #include "parser/stml-parser.h"
 #include "json11.hpp"
+#include "event_loop_impl.hpp"
+#include "event_loop.hpp"
+#include "thread_launcher.hpp"
 
 namespace smobiler {
-    std::shared_ptr<Stml> Stml::create()
+    std::shared_ptr<Stml> Stml::create(const std::shared_ptr<LogInterface> &log, const std::shared_ptr<Cache> &cache, const std::shared_ptr<EventLoop> &ui_thread, const std::shared_ptr<ThreadLauncher> &launcher)
     {
-        return std::make_shared<StmlImpl>();
+        const auto ui_runner = make_shared<EventLoopRef>(ui_thread);
+        const auto bg_runner = make_shared<EventLoopCpp>(launcher);
+        return std::make_shared<StmlImpl>(log, cache, ui_runner, bg_runner);
     }
     
-    StmlImpl::StmlImpl()
+    StmlImpl::StmlImpl(const std::shared_ptr<LogInterface> &log,
+                       const std::shared_ptr<Cache> &cache,
+                       const shared_ptr<SingleThreadTaskRunner>&ui_runner,
+                       const shared_ptr<SingleThreadTaskRunner> &bg_runner
+                       ) :
+    m_ui_thread {ui_runner},
+    m_bg_thread {bg_runner}
     {
         m_listener = nullptr;
+        
+        LogImpl::set(log, bg_runner);
+        
         
         Dogrobber::getInstance().setEventCallback(bind(&StmlImpl::onDogrobberEvent,
                                                        this,
@@ -91,7 +105,11 @@ namespace smobiler {
         {
             case Dogrobber::EventType::EConnected:
             {
-                if(m_listener) m_listener->connected();
+                if(m_listener){
+                    m_bg_thread->post([&](){
+                        m_listener->connected();
+                    });
+                }
                 break;
             }
             case Dogrobber::EventType::EReconnected:
@@ -101,11 +119,15 @@ namespace smobiler {
             case Dogrobber::EventType::EDisconnect:
             {
                 if(m_listener){
+                    
+                    std::string errmsg="";
                     if(error){
-                        m_listener->disconnect(error.message());
-                    } else {
-                        m_listener->disconnect("");
+                        errmsg = error.message();
                     }
+                    
+                    m_bg_thread->post([&](){
+                        m_listener->disconnect(errmsg);
+                    });
                 }
                 break;
             }
@@ -114,7 +136,7 @@ namespace smobiler {
                 
                 if(error)
                 {
-                    LogImpl::e(TAG_SOCKET, error.message());
+                    LOGE(TAG_SOCKET, error.message());
                     break;
                 }
                 
@@ -149,7 +171,8 @@ namespace smobiler {
 
                         while(entity){
                             std::string name = entity->Name();
-                            
+                            std::string str;
+
                             if(name == "CREATE"){
                                 auto attr = entity->FirstAttribute();
                                 
@@ -160,21 +183,26 @@ namespace smobiler {
                                     attr = attr->Next();
                                 }
                                 
-                                std::string str;
                                 json11::Json json(obj);
                                 json.dump(str);
-                                
-                                m_listener->received(str);
                             } else if(name== "Session"){
                                 
                                 json11::Json::object obj;
                                 obj["Type"] = "end";
-                                std::string str;
                                 json11::Json json(obj);
                                 json.dump(str);
                                 
-                                m_listener->received(str);
+
                             }
+                            
+                            if(!str.empty()){
+                                m_bg_thread->post([&, str](){
+                                    m_listener->received(str);
+                                });
+                            }
+                            
+
+                            
                             
                             entity = entity->NextSiblingElement();
                         }
@@ -196,7 +224,9 @@ namespace smobiler {
             case Dogrobber::EventType::ESended:
             {
                 if(m_listener){
-                    m_listener->sended("");
+                    m_bg_thread->post([&](){
+                        m_listener->sended("");
+                    });
                 }
                 break;
             }

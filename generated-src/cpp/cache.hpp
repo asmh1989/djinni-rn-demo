@@ -3,7 +3,6 @@
 
 #pragma once
 
-#include <memory>
 #include <string>
 
 namespace smobiler {
@@ -21,7 +20,7 @@ public:
 
     virtual bool put(const std::string & key, const std::string & value) = 0;
 
-    static std::shared_ptr<Cache> instance();
+    virtual std::string getRootPath() = 0;
 };
 
 }  // namespace smobiler

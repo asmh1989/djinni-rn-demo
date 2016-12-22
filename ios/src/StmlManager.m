@@ -8,8 +8,9 @@
 
 #import "StmlManager.h"
 #import "RCTLog.h"
-#import "SMLog.h"
 #import "SMStml.h"
+#import "SMEventLoopObjc.h"
+#import "SMThreadLauncherObjc.h"
 
 const NSString* TAG=@"StmlManager";
 
@@ -38,8 +39,9 @@ RCT_EXPORT_MODULE(StmlManager);
 {
   self = [super init];
   if (self) {
-    [SMLog create:self];
-    stml_ = [SMStml create];
+    id <SMEventLoop> uiThread= [[SMEventLoopObjc alloc] init];
+    id <SMThreadLauncher> launcher = [[SMThreadLauncherObjc alloc] init];
+    stml_ = [SMStml create:self cache:nil uiThread:uiThread launcher:launcher];
     [stml_ setListener:self];
   }
   return self;

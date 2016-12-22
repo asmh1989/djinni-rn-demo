@@ -1,0 +1,4 @@
+thread_launcher = interface +o +j {
+    # name is nullable
+    start_thread(name: string, run_fn: async_task);
+}

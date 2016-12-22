@@ -9,7 +9,11 @@
 
 namespace smobiler {
 
+class Cache;
+class EventLoop;
+class LogInterface;
 class StmlListener;
+class ThreadLauncher;
 
 /** stml */
 class Stml {
@@ -30,7 +34,7 @@ public:
 
     virtual void setListener(const std::shared_ptr<StmlListener> & listener) = 0;
 
-    static std::shared_ptr<Stml> create();
+    static std::shared_ptr<Stml> create(const std::shared_ptr<LogInterface> & log, const std::shared_ptr<Cache> & cache, const std::shared_ptr<EventLoop> & ui_thread, const std::shared_ptr<ThreadLauncher> & launcher);
 };
 
 }  // namespace smobiler

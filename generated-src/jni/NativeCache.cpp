@@ -61,12 +61,13 @@ CJNIEXPORT jboolean JNICALL Java_com_smobiler_djinni_Cache_00024CppProxy_native_
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jobject JNICALL Java_com_smobiler_djinni_Cache_instance(JNIEnv* jniEnv, jobject /*this*/)
+CJNIEXPORT jstring JNICALL Java_com_smobiler_djinni_Cache_00024CppProxy_native_1getRootPath(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {
-        DJINNI_FUNCTION_PROLOGUE0(jniEnv);
-        auto r = ::smobiler::Cache::instance();
-        return ::djinni::release(::djinni_generated::NativeCache::fromCpp(jniEnv, r));
+        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
+        const auto& ref = ::djinni::objectFromHandleAddress<::smobiler::Cache>(nativeRef);
+        auto r = ref->getRootPath();
+        return ::djinni::release(::djinni::String::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 

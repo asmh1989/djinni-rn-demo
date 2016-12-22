@@ -62,10 +62,10 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (nullable SMCache *)instance {
+- (nonnull NSString *)getRootPath {
     try {
-        auto objcpp_result_ = ::smobiler::Cache::instance();
-        return ::djinni_generated::Cache::fromCpp(objcpp_result_);
+        auto objcpp_result_ = _cppRefHandle.get()->getRootPath();
+        return ::djinni::String::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 

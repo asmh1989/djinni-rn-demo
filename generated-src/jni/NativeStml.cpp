@@ -3,7 +3,11 @@
 
 #include "NativeStml.hpp"  // my header
 #include "Marshal.hpp"
+#include "NativeCache.hpp"
+#include "NativeEventLoop.hpp"
+#include "NativeLogInterface.hpp"
 #include "NativeStmlListener.hpp"
+#include "NativeThreadLauncher.hpp"
 
 namespace djinni_generated {
 
@@ -85,11 +89,14 @@ CJNIEXPORT void JNICALL Java_com_smobiler_djinni_Stml_00024CppProxy_native_1setL
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT jobject JNICALL Java_com_smobiler_djinni_Stml_create(JNIEnv* jniEnv, jobject /*this*/)
+CJNIEXPORT jobject JNICALL Java_com_smobiler_djinni_Stml_create(JNIEnv* jniEnv, jobject /*this*/, jobject j_log, jobject j_cache, jobject j_uiThread, jobject j_launcher)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);
-        auto r = ::smobiler::Stml::create();
+        auto r = ::smobiler::Stml::create(::djinni_generated::NativeLogInterface::toCpp(jniEnv, j_log),
+                                          ::djinni_generated::NativeCache::toCpp(jniEnv, j_cache),
+                                          ::djinni_generated::NativeEventLoop::toCpp(jniEnv, j_uiThread),
+                                          ::djinni_generated::NativeThreadLauncher::toCpp(jniEnv, j_launcher));
         return ::djinni::release(::djinni_generated::NativeStml::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
