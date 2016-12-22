@@ -67,7 +67,7 @@ model {
 
             ldLibs.add("z")
 //            ldLibs.add("log")
-            abiFilters.addAll(['armeabi-v7a'])
+            abiFilters.addAll(['armeabi-v7a', 'x86'])
         }
     }
 }

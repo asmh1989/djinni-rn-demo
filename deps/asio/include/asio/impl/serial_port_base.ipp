@@ -114,7 +114,7 @@ asio::error_code serial_port_base::baud_rate::store(
     return ec;
   }
 # if defined(_BSD_SOURCE)
-  ::cfsetspeed(&storage, baud);
+//  ::cfsetspeed(&storage, baud);
 # else
   ::cfsetispeed(&storage, baud);
   ::cfsetospeed(&storage, baud);
