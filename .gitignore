@@ -29,6 +29,7 @@ build/
 .gradle
 local.properties
 *.iml
+android/app/src/main/assets/index.android.*
 
 # node.js
 #
@@ -43,4 +44,3 @@ android/app/libs
 
 # djinni
 build_ios/
-
