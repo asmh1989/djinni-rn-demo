@@ -4,6 +4,8 @@
  * @flow
  */
 
+'use strict';
+
 import React, { Component } from 'react';
 import {
   StyleSheet,
@@ -11,6 +13,7 @@ import {
   View,
   Modal,
   Platform,
+  Button
 } from 'react-native';
 
 import * as Progress from 'react-native-progress';
@@ -21,6 +24,8 @@ var stml = require('./js/stml');
 var viewMaker = require('./js/viewMaker');
 
 export default class RNSmobiler extends Component {
+
+  mainView: React.PropTypes.element;
 
   state: {
     progressVisible: boolean,
@@ -119,6 +124,10 @@ export default class RNSmobiler extends Component {
 
   }
 
+  onClick(){
+      stml.start('192.168.7.59', 23);
+  }
+
   render() {
 
     let time = new Date();
@@ -157,6 +166,7 @@ export default class RNSmobiler extends Component {
         <Text style={styles.welcome}>
           Welcome to RNSmobiler!
         </Text>
+        <Button title='start' onPress={this.onClick.bind(this)} />
         {progressView}
       </View>
     );
