@@ -4,3 +4,6 @@
 [submodule "deps/gyp"]
 	path = deps/gyp
 	url = git@192.168.7.28:sandy/gyp.git
+[submodule "deps/json11"]
+	path = deps/json11
+	url = git@192.168.7.28:sandy/json11.git

@@ -11,12 +11,15 @@
         "<!@(python deps/djinni/example/glob.py generated-src/objc  '*.h' '*.mm' '*.m')",
         "<!@(python deps/djinni/example/glob.py generated-src/cpp   '*.cpp' '*.hpp')",
         "<!@(python deps/djinni/example/glob.py src '*.cpp' '*.hpp' '*.h')",
+        "deps/json11/json11.cpp",
+        "deps/json11/json11.hpp",
       ],
       "include_dirs": [
         "generated-src/objc",
         "generated-src/cpp",
         "src",
         "deps/asio/include",
+        "deps/json11"
       ],
       'configurations': {
         'Debug': {
