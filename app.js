@@ -25,8 +25,6 @@ var viewMaker = require('./js/viewMaker');
 
 export default class RNSmobiler extends Component {
 
-  mainView: React.PropTypes.element;
-
   state: {
     progressVisible: boolean,
     hasVtView: number,
