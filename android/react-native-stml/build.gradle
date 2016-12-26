@@ -57,7 +57,7 @@ model {
             toolchain = "gcc"
             toolchainVersion = "4.9"
             moduleName = "stml"
-            stl = "gnustl_static"
+            stl = "gnustl_shared"
             platformVersion = 16
             cppFlags.add("-std=c++11")
             cppFlags.add("-fexceptions")

@@ -38,6 +38,7 @@ public class StmlManagerModule extends ReactContextBaseJavaModule {
     private static final String StmlEventSended="stml_sended";
     private static final String StmlEventReceived="stml_received";
     static {
+        System.loadLibrary("gnustl_shared");
         System.loadLibrary("stml");
     }
 
