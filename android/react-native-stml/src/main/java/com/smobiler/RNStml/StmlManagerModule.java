@@ -1,5 +1,6 @@
 package com.smobiler.RNStml;
 
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.facebook.react.bridge.Arguments;
@@ -7,10 +8,15 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.smobiler.djinni.Stml;
 import com.smobiler.djinni.StmlListener;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +28,8 @@ import java.util.Map;
 public class StmlManagerModule extends ReactContextBaseJavaModule {
 
     private ReactApplicationContext reactContext;
+    private static final String TAG="StmlManagerModule";
+
 
     private Stml mStmlImpl;
     private LogImpl mLogImpl = new LogImpl();
@@ -113,9 +121,15 @@ public class StmlManagerModule extends ReactContextBaseJavaModule {
 
         @Override
         public void received(String msg) {
-            WritableMap params = Arguments.createMap();
-            params.putString("msg", msg);
-            sendEvent(reactContext, StmlEventReceived, params);
+            try {
+                JSONObject obj =  new JSONObject(msg);
+                WritableMap map = JsonConvert.jsonToReact(obj);
+                sendEvent(reactContext, StmlEventReceived, map);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                mLogImpl.e(TAG, "received errormsg =  "+msg);
+            }
         }
 
         @Override

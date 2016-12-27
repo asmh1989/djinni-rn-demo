@@ -160,18 +160,19 @@ namespace smobiler {
                         XMLElement* root = xml->RootElement();
 
                         XMLElement* entity = root->FirstChildElement();
+
+                        json11::Json::array jsonarray;
                         
                         {
                             json11::Json::object obj;
                             obj["Type"] = "start";
-                            std::string str;
                             json11::Json json(obj);
-                            json.dump(str);
+
+                            jsonarray.push_back(obj);
                         }
 
                         while(entity){
                             std::string name = entity->Name();
-                            std::string str;
 
                             if(name == "CREATE"){
                                 auto attr = entity->FirstAttribute();
@@ -184,27 +185,32 @@ namespace smobiler {
                                 }
                                 
                                 json11::Json json(obj);
-                                json.dump(str);
+                                jsonarray.push_back(obj);
+
                             } else if(name== "Session"){
                                 
                                 json11::Json::object obj;
                                 obj["Type"] = "end";
                                 json11::Json json(obj);
-                                json.dump(str);
-                                
-
+                                jsonarray.push_back(obj);
                             }
-                            
-                            if(!str.empty()){
-                                m_bg_thread->post([&, str](){
-                                    m_listener->received(str);
-                                });
-                            }
-                            
 
-                            
-                            
                             entity = entity->NextSiblingElement();
+                        }
+
+                        std::string str;
+
+                        json11::Json::object rootObj;
+                        
+                        rootObj["msg"] = jsonarray;
+                        json11::Json rootJson(rootObj);
+
+                        rootJson.dump(str);
+
+                        if(!str.empty()){
+                            m_bg_thread->post([&, str](){
+                                m_listener->received(str);
+                            });
                         }
                         
                         if(m_listener){

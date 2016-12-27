@@ -82,21 +82,24 @@ export default class RNSmobiler extends Component {
   }
 
   StmlEventReceived(obj: Object){
-    console.log(`StmlEventReceived: ${obj.msg}`);
+    console.log(`StmlEventReceived: ${JSON.stringify(obj)}`);
 
     let oldState = this.state;
     oldState.progressVisible = false;
-    let msg = JSON.parse(obj.msg);
-    if(msg.Type == 'end'){
-      this.setState({
-        progressVisible: false,
-        hasVtView: this.state.hasVtView+1,
-        progressText:''
-      });
-    } else {
-        viewMaker.create(msg);
-        // this.setState(oldState);
-    }
+
+    obj.msg.forEach((p) => {
+        if(p.Type == 'end'){
+          this.setState({
+            progressVisible: false,
+            hasVtView: this.state.hasVtView+1,
+            progressText:''
+          });
+        } else {
+            viewMaker.create(p);
+            // this.setState(oldState);
+        }
+    });
+
   }
 
 

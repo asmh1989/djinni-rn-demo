@@ -106,9 +106,16 @@ RCT_EXPORT_MODULE(StmlManager);
 
 - (void)received:(NSString *)msg
 {
-  [self sendEventWithName:StmlEventReceived body:@{
-                                                 @"msg":msg
-                                                 }];
+  NSData* jsonData = [msg dataUsingEncoding:NSUTF8StringEncoding];
+  
+  NSError *error;
+  NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
+  
+  if(!error){
+    [self sendEventWithName:StmlEventReceived body:dict];
+  } else {
+    [self e:(NSString*)TAG msg:[NSString stringWithFormat:@"received errormsg:%@", msg]];
+  }
 
 }
 
