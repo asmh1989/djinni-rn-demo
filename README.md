@@ -1,4 +1,3 @@
-
 ### 前提
 安装 node
 
@@ -6,7 +5,7 @@
 #### 步骤
 ```
 #更新依赖库
-git submodule update
+git submodule update --init
 
 #更新npm
 npm install
