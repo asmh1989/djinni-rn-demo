@@ -157,9 +157,10 @@ export default class RNSmobiler extends Component {
     if(this.state.hasVtView > 0){
       let views = viewMaker.elements;
       views.push(progressView);
-      let mainView = React.createElement(View, {style: {flex: 1}}, views);
 
-      return mainView;
+      console.log(`######### render count = ${viewMaker.elements.length}`);
+
+      return React.createElement(View, {style: {flex: 1}}, views);
     }
     else
       return (

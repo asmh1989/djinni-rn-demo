@@ -10,7 +10,7 @@ import {
 	Button,
 	TextInput,
 	WebView,
-    Image
+	Image
 } from 'react-native';
 
 var stml = require('./stml');
@@ -61,6 +61,16 @@ class VTWebView extends Component
 	{
 		super(props)
 		this.state = {style:{}};
+	}
+
+	componentWillMount()
+	{
+		console.log(`componentWillMount, VTWebView ...`);
+	}
+
+	componentWillUnmount()
+	{
+		console.log(`componentWillUnmount, VTWebView ...`);
 	}
 
 	render() {
@@ -116,7 +126,7 @@ class VTButton extends Component
 	}
 
 	render() {
-		// console.log(`props : ${JSON.stringify(this.props)}`);
+		console.log(`props : ${JSON.stringify(this.props)}`);
 		return (
 			<View style={[this.props.styles, {position: 'absolute'}] }>
 				<Button  title={this.props.text} onPress={this.onClick.bind(this)} />
@@ -158,7 +168,7 @@ class ViewMarker
 			this.Form.height = Number.parseInt(obj.Height);
 
 			if(obj.ScreenOrientation == 'Landscape'){
-				this.scale = Dimensions.get('window').width / 300;
+				this.scale = Dimensions.get('window').width / 360;
 			} else {
 				this.scale = Dimensions.get('window').width / this.Form.width;
 			}
@@ -194,7 +204,7 @@ class ViewMarker
 				}
 			}
 
-			console.log(`style=${JSON.stringify(style)}`);
+			// console.log(`style=${JSON.stringify(style)}`);
 			let view = <VTLabel styles={style} key={key} text={text} name={key} />
 			this.elements.push(view);
 		} else if(obj.Type == 'Button'){
@@ -221,7 +231,7 @@ class ViewMarker
 				}
 			}
 
-			console.log(`style=${JSON.stringify(style)}`);
+			// console.log(`style=${JSON.stringify(style)}`);
 			let view = <VTButton styles={style} key={key} name={key} text={text} />
 			this.elements.push(view);
 		} else if( obj.Type =='TextBox' ){
@@ -262,7 +272,7 @@ class ViewMarker
 			style.borderColor='#000000';
 			style.borderWidth=1;
 
-			console.log(`style=${JSON.stringify(style)}`);
+			// console.log(`style=${JSON.stringify(style)}`);
 			let view = <VTTextInput styles={style} key={key} name={key} text={text} placeholder={placeholder}/>
 			this.elements.push(view);
 		} else if(obj.Type =='WebView'){
@@ -289,7 +299,7 @@ class ViewMarker
 				}
 			}
 
-			console.log(`style=${JSON.stringify(style)}`);
+			// console.log(`style=${JSON.stringify(style)}`);
 			let view = <VTWebView styles={style} key={key} uri={uri} name={key} />
 			this.elements.push(view);
 		} else if( obj.Type == 'ImageButton'){
@@ -319,7 +329,7 @@ class ViewMarker
 				}
 			}
 
-			console.log(`style=${JSON.stringify(style)}`);
+			// console.log(`style=${JSON.stringify(style)}`);
 			let view = <VTImage styles={style} key={key} uri={uri} name={key}  resizeMode={resizeMode}/>
 			this.elements.push(view);
 		}
