@@ -1,5 +1,5 @@
 ### 前提
-安装 node
+安装 node.js
 
 
 #### 步骤
@@ -34,15 +34,15 @@ import Android/.. to android-studio
 
 
 ### ios project
-`libstml` , C++ 代码, 底层处理库, 主要负责stml协议 和 数据缓存
+`libstml` , c++ 代码, 底层处理库, 主要负责stml协议 和 数据缓存
 
-`supoort_lib`, C++ djinni 库, 提供便捷的接口 设置
+`supoort_lib`, c++ djinni 库, 提供便捷的接口 设置
 
-`crypto`, C++ 加密库
+`crypto`, c++ 加密库
 
-`RNSmobiler` react-mative 工程
+`RNSmobiler` react-native 工程
 
 ### android project
 
-`react-native-stml`, stml, C++ , java代码, 编译成`react-native` 插件的形式
+`react-native-stml`, stml, c++ , java代码, 编译成`react-native` 插件的形式
 
